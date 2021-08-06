@@ -7,11 +7,14 @@ int main()
 {
     srand(time(0));
 
-    Rectangle* boundary = new Rectangle(400, 400, 400, 400);
-    QuadTree* qt = new QuadTree(boundary, 1);
+    const int windowWidth = 600;
+    const int windowHeight = 600;
+
+    Rectangle* boundary = new Rectangle(windowWidth, windowHeight, windowWidth, windowHeight);
+    QuadTree* qt = new QuadTree(boundary, 5);
 
     for (size_t i = 0; i < 500; i++) {
-        Point* p = new Point(rand() % 400, rand() % 400);
+        Point* p = new Point(rand() % windowWidth, rand() % windowHeight);
         qt->Insert(p);
     }
 
@@ -24,7 +27,7 @@ int main()
 
     std::vector<Point*> inRange;
 
-    sf::RenderWindow window(sf::VideoMode(400, 400), "Quadtree");
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Quadtree");
     while (window.isOpen())
     {
         sf::Event event;
